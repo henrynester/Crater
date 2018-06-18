@@ -159,8 +159,12 @@ public class Lander {
       myY -= myVertVel;
       if(isThrust) //if thrusting, lose fuel
          myFuel -= 1;
-      if(isLeftRcs || isRightRcs) //if using RCS, lose RCS propellant
-         myRcs -= 1;  
+      if(isLeftRcs || isRightRcs) { //if using RCS
+         myRcs -= 1; //lose RCS propellant
+      }
+      else { //if not using RCS
+         myAttVel *= 0.995; //slightly decrease angular velocity
+      }
       myAttVel += myAttAccel; //Add angular acceleration to angular velocity
       myAtt += myAttVel; //Increment angle by angular velocity
       myAtt = constrainAngle(myAtt); //constrain the attitude angle to the range -180 -> 0 -> 180
