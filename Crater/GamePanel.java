@@ -449,13 +449,13 @@ public class GamePanel extends JPanel {
          }   
          if(e.getKeyCode() == KeyEvent.VK_LEFT && lem.getRightRcs() == false) { //left key
             if(!lem.isOutOfRcs()) {
-               lem.setLeftRcs(true); //left RCS jet on, start tilting right
+               lem.setRightRcs(true); //right RCS jet on, start tilting left
                Sound.loop(rcsSound); //start the noise
-            }   
+            }
          }   
          if(e.getKeyCode() == KeyEvent.VK_RIGHT && lem.getLeftRcs() == false) { //right key
             if(!lem.isOutOfRcs()) {
-               lem.setRightRcs(true); //right RCS jet on, start tilting left
+               lem.setLeftRcs(true); //left RCS jet on, start tilting right
                Sound.loop(rcsSound); //start the noise
             }
          }   
@@ -468,11 +468,11 @@ public class GamePanel extends JPanel {
             Sound.stop(thrusterSound); //end the noise
          }   
          if(e.getKeyCode() == KeyEvent.VK_LEFT) { //left
-            lem.setLeftRcs(false); //left RCS off
+            lem.setRightRcs(false); //right RCS off
             Sound.stop(rcsSound); //end the noise
          }   
          if(e.getKeyCode() == KeyEvent.VK_RIGHT) { //right
-            lem.setRightRcs(false); //right RCS off
+            lem.setLeftRcs(false); //left RCS off
             Sound.stop(rcsSound); //end the noise
          }   
       }
