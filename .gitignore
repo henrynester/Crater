@@ -3,3 +3,6 @@
 
 #jGRASP project files (not compatible across versions)
 *.gpj
+
+#High scores
+Crater/resources/data/highscores.txt
