@@ -408,6 +408,7 @@ public class GamePanel extends JPanel {
             name = JOptionPane.showInputDialog(message + "\nEnter your name to save this high score!");
             highScoreNum = score; //store your score in the highscore var
             try {
+               new File("resources/data").mkdirs();
                //attempt to make a PrintStream so we can write the new high score to the file
                PrintStream highScoreWriter = new PrintStream(new FileOutputStream(
                                                    new File("resources/data/highscores.txt")));
