@@ -393,15 +393,19 @@ public class GamePanel extends JPanel {
             highScoreReader.close();
          } 
          catch(Exception exp) {
-            //upon failure of any of the above steps, show an error dialog
-            JOptionPane.showMessageDialog(null, "Error reading high scores");
-            return;
+            highScoreNum = 0;
+            name = null;
          }
          if(score > highScoreNum) { //if your score is better than the old high score
             //show a message and ask player to input their name
-            name = JOptionPane.showInputDialog("You beat " + name + "'s score of " 
-                   + highScoreNum + " with a score of " + score + 
-                   ".\nEnter your name to save this high score!");
+            String message;
+            if(highScoreNum == 0) {
+               message = "You set a new high score of " + score + "!";
+            }
+            else {
+               message = "You beat " + name + "'s score of " + highScoreNum + " with a score of " + score + "!";
+            }
+            name = JOptionPane.showInputDialog(message + "\nEnter your name to save this high score!");
             highScoreNum = score; //store your score in the highscore var
             try {
                //attempt to make a PrintStream so we can write the new high score to the file
@@ -415,9 +419,14 @@ public class GamePanel extends JPanel {
                //upon failure, show a dialog
                JOptionPane.showMessageDialog(null, "Error writing high scores");
                return;
-            }      
+            }
          }
-         highScore.setText("HIGH SCORE: " + highScoreNum + " (" + name + ")");
+         if(highScoreNum == 0) {
+            highScore.setText("NO HIGH SCORE");
+         }
+         else {
+            highScore.setText("HIGH SCORE: " + highScoreNum + " (" + name + ")");
+         }
          yourScore.setText("SCORE: " + score);
       }
    }
